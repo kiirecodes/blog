@@ -1,241 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>0xKiire.coredumped</title>
+  <meta name="description" content="Minimal, hacker-style blog by 0xKiire — Markdown-powered, fast and elegant." />
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+  <!-- Social preview -->
+  <meta property="og:title" content="0xKiire.coredumped" />
+  <meta property="og:description" content="Minimal, hacker-style blog by 0xKiire — Markdown-powered, fast and elegant." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-    :root[data-theme="dark"] {
-      --bg: #0d0d0d;
-      --text: #e6e6e6;
-      --accent: #4ae3ff;
-      --card: #1a1a1a;
-    }
+  <link rel="stylesheet" href="/styles.css" />
+  <!-- Prism (syntax highlighting) — CDN fallback -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" integrity="" crossorigin="anonymous" />
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" crossorigin="anonymous">
 
-    :root[data-theme="light"] {
-      --bg: #f5f5f5;
-      --text: #111;
-      --accent: #0077cc;
-      --card: #ffffff;
-    }
-
-    header {
-      padding: 2rem;
-      text-align: center;
-      border-bottom: 1px solid #222;
-      background: var(--card);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: var(--accent);
-    }
-
-    #container {
-      display: grid;
-      grid-template-columns: 1fr 3fr;
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    #sidebar {
-      padding-right: 1rem;
-      border-right: 1px solid #333;
-    }
-
-    #search {
-      width: 100%;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 8px;
-      background: var(--card);
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .tag {
-      display: inline-block;
-      background: var(--accent);
-      color: #000;
-      padding: 4px 8px;
-      margin: 0 4px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
-
-    #pagination button {
-      background: var(--accent);
-      border: none;
-      padding: 0.5rem 1rem;
-      margin: 0.5rem;
-      border-radius: 6px;
-      cursor: pointer;
-      color: #000;
-    }
-
-    pre, code {
-      background: #111;
-      padding: 0.5rem;
-      border-radius: 6px;
-    }
-  </style>
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="/app.js"></script>
 </head>
-
 <body>
-  <header>
-    <h1>0xKiire.coredumped</h1>
-    <button id="themeToggle">Toggle Theme</button>
-    <p>Your elegant, fast hacker-style blog.</p>
+  <header class="site-header">
+    <div class="brand" role="banner">
+      <a class="brand-link" href="/"><span class="brand-main">0xKiire</span><span class="brand-sub">.coredumped</span></a>
+    </div>
+
+    <div class="controls">
+      <input id="search" aria-label="Search posts" placeholder="Search posts..." />
+      <button id="themeToggle" aria-label="Toggle theme">🌗</button>
+      <button id="menuToggle" aria-label="Open menu" class="hamburger">☰</button>
+    </div>
   </header>
 
-  <div id="container">
-    <aside id="sidebar">
-      <input id="search" placeholder="Search blogs..." />
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <section class="sidebar-section">
+        <h3>Tags</h3>
+        <div id="tagList" class="tag-list"></div>
+      </section>
 
-      <h3>Tags</h3>
-      <div id="tag-list"></div>
+      <section class="sidebar-section">
+        <h3>Posts</h3>
+        <ul id="postList" class="post-list" aria-live="polite"></ul>
+        <div id="pagination" class="pagination"></div>
+      </section>
 
-      <h3>Blogs</h3>
-      <ul id="blog-list"></ul>
-
-      <div id="pagination"></div>
+      <section class="sidebar-section small">
+        <button id="rssBtn" title="RSS">Subscribe (RSS)</button>
+        <a href="https://github.com/kiirecodes" target="_blank" rel="noopener">GitHub</a>
+      </section>
     </aside>
 
-    <main id="content">
-      <h2>Welcome</h2>
-      <p>Select a blog post to begin reading.</p>
-
-      <div id="comments"></div>
+    <main class="content" id="content" role="main">
+      <article id="articleIntro" class="article-intro">
+        <h1>Welcome to 0xKiire.coredumped</h1>
+        <p class="lead">Minimal — Fast — Hacker-style. Choose a post on the left or search to get started.</p>
+      </article>
     </main>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <footer class="site-footer">
+    <small>&copy; 2025 0xKiire.coredumped — Built with Zig & JS in spirit ✨</small>
+  </footer>
 
-  <script>
-    let posts = [];
-    let filtered = [];
-    let itemsPerPage = 6;
-    let currentPage = 1;
-
-    async function init() {
-      const response = await fetch('/blogs/index.json');
-      posts = await response.json();
-      filtered = posts;
-      renderTags();
-      renderList();
-    }
-
-    function renderList() {
-      const list = document.getElementById('blog-list');
-      list.innerHTML = '';
-
-      let start = (currentPage - 1) * itemsPerPage;
-      let end = start + itemsPerPage;
-      let pagePosts = filtered.slice(start, end);
-
-      pagePosts.forEach(post => {
-        const li = document.createElement('li');
-        li.textContent = post.title;
-        li.onclick = () => loadBlog(post.file);
-        list.appendChild(li);
-      });
-
-      renderPagination();
-    }
-
-    function renderPagination() {
-      const total = Math.ceil(filtered.length / itemsPerPage);
-      const p = document.getElementById('pagination');
-      p.innerHTML = '';
-
-      for (let i = 1; i <= total; i++) {
-        const btn = document.createElement('button');
-        btn.textContent = i;
-        btn.onclick = () => { currentPage = i; renderList(); };
-        p.appendChild(btn);
-      }
-    }
-
-    function renderTags() {
-      const tags = [...new Set(posts.flatMap(p => p.tags || []))];
-      const container = document.getElementById('tag-list');
-      container.innerHTML = '';
-
-      tags.forEach(tag => {
-        const span = document.createElement('span');
-        span.className = 'tag';
-        span.textContent = tag;
-        span.onclick = () => {
-          filtered = posts.filter(p => p.tags?.includes(tag));
-          currentPage = 1;
-          renderList();
-        };
-        container.appendChild(span);
-      });
-    }
-
-    document.getElementById('search').oninput = (e) => {
-      const q = e.target.value.toLowerCase();
-      filtered = posts.filter(p => p.title.toLowerCase().includes(q));
-      currentPage = 1;
-      renderList();
-    };
-
-    async function loadBlog(filename) {
-      const response = await fetch(`/blogs/${filename}`);
-      const text = await response.text();
-      const html = marked.parse(text);
-
-      const content = document.getElementById('content');
-      content.innerHTML = html;
-
-      hljs.highlightAll();
-      loadComments(filename);
-    }
-
-    function loadComments(id) {
-      const box = document.getElementById('comments');
-      box.innerHTML = `
-        <h3>Comments</h3>
-        <script src="https://giscus.app/client.js"
-            data-repo="kiirecodes/0xkiire.coredumped"
-            data-repo-id="R_kgDO123456"
-            data-category="General"
-            data-category-id="DIC_kwDO1234564Ce345"
-            data-mapping="pathname"
-            data-strict="0"
-            data-reactions-enabled="1"
-            data-emit-metadata="0"
-            data-input-position="bottom"
-            data-theme="dark"
-            data-lang="en"
-            crossorigin="anonymous"
-            async>
-        </script>
-      `;
-    }
-
-    document.getElementById("themeToggle").onclick = () => {
-      const html = document.documentElement;
-      html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
-    };
-
-    init();
-  </script>
+  <!-- Giscus for comments (deferred insertion by app.js) -->
+  <noscript><p>Comments require JavaScript.</p></noscript>
 </body>
-</html>
+      </html>
