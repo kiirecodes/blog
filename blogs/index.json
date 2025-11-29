@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Welcome to 0xKiire",
+    "file": "sample.md",
+    "description": "Intro to the blog and mission.",
+    "tags": ["intro", "meta"],
+    "date": "2025-11-27",
+    "slug": "welcome-to-0xkiire",
+    "draft": false
+  },
+  {
+    "title": "Zig Kernel Journey",
+    "file": "zig-kernel.md",
+    "description": "Starting my kernel project using Zig.",
+    "tags": ["zig","kernel","systems"],
+    "date": "2025-11-25",
+    "slug": "zig-kernel-journey",
+    "draft": false
+  }
+]
