@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>0xKiire.coredumped</title>
+    <link>https://0xkiire.coredumped</link>
+    <description>RSS feed for 0xKiire.coredumped</description>
+    
+    <item>
+      <title>zig-kernel</title>
+      <link>https://0xkiire.coredumped/blogs/zig-kernel.md</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 GMT</pubDate>
+      <description>
+title: Zig Kernel Journey
+date: 2025-11-25
+tags: [zig, kernel, systems]
+Zig Kernel Journey
+This post will document the initial steps of the kernel project using Zig.
+Math example:
+$$
+E = mc^2
+$$
+</description>
+    </item>
+
+    <item>
+      <title>Welcome to 0xKiire</title>
+      <link>https://0xkiire.coredumped/blogs/sample.md</link>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Welcome to 0xKiire
+This is the beginning of the digital mindspace. Minimal posts, code, and experiments.
+console.log(&amp;quot;Hello 0xKiire&amp;quot;);
+
+</description>
+    </item>
+  </channel>
+</rss>

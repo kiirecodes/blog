@@ -1,20 +1,23 @@
 [
   {
-    "title": "Welcome to 0xKiire",
-    "file": "sample.md",
-    "description": "Intro to the blog and mission.",
-    "tags": ["intro", "meta"],
-    "date": "2025-11-27",
-    "slug": "welcome-to-0xkiire",
+    "title": "zig-kernel",
+    "date": "2025-11-30",
+    "tags": [],
+    "description": "\ntitle: Zig Kernel Journey\ndate: 2025-11-25\ntags: [zig, kernel, systems]\nZig Kernel Journey\nThis post will document the initial steps of the kernel project using Zig.\nMath example:\n$$\nE = mc^2\n$$\n",
+    "file": "zig-kernel.md",
+    "slug": "zig-kernel",
     "draft": false
   },
   {
-    "title": "Zig Kernel Journey",
-    "file": "zig-kernel.md",
-    "description": "Starting my kernel project using Zig.",
-    "tags": ["zig","kernel","systems"],
-    "date": "2025-11-25",
-    "slug": "zig-kernel-journey",
+    "title": "Welcome to 0xKiire",
+    "date": "2025-11-27T00:00:00.000Z",
+    "tags": [
+      "intro",
+      "meta"
+    ],
+    "description": "Welcome to 0xKiire\nThis is the beginning of the digital mindspace. Minimal posts, code, and experiments.\nconsole.log(&quot;Hello 0xKiire&quot;);\n\n",
+    "file": "sample.md",
+    "slug": "sample",
     "draft": false
   }
 ]
